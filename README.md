@@ -23,17 +23,17 @@ Before you can run the RazorERPApp, ensure you have the following prerequisites:
 2 . **Set RazorERP.API as Startup Project**
   
   In Visual Studio:
-- Right-click on the RazorERP.API project in the Solution Explorer.
-- Select Set as Startup Project.
+   - Right-click on the RazorERP.API project in the Solution Explorer.
+   - Select Set as Startup Project.
 
 ## Running the Application
 
 1. **Build and Run**
-  In Visual Studio, build and run the application by pressing F5 or clicking on the Start button.
+     - In Visual Studio, build and run the application by pressing F5 or clicking on the Start button.
 2. **Swagger UI**
-  The Swagger UI will be available at https://localhost:5001/swagger or http://localhost:5000/swagger (depending on your HTTPS settings). Use it to explore and test the API endpoints.
+     - The Swagger UI will be available at https://localhost:5001/swagger or http://localhost:5000/swagger (depending on your HTTPS settings). Use it to explore and test the API endpoints.
 3. **Update appsettings.json**
-  Update the appsettings.json file in the RazorERP.API project to configure the connection string for your database and JWT settings.
+     - Update the appsettings.json file in the RazorERP.API project to configure the connection string for your database and JWT settings.
 
     ```json
     {
@@ -56,6 +56,54 @@ Before you can run the RazorERPApp, ensure you have the following prerequisites:
       }
     }
     ```
+4. **Update JWT in launchSettings.json**
+   Update  "JWT_KEY": "<your-secure-key>" same from  appsettings.json
+      ```json
+      {
+        "$schema": "http://json.schemastore.org/launchsettings.json",
+        "iisSettings": {
+          "windowsAuthentication": false,
+          "anonymousAuthentication": true,
+          "iisExpress": {
+            "applicationUrl": "http://localhost:62350",
+            "sslPort": 44366
+          }
+        },
+        "profiles": {
+          "http": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "http://localhost:5168",
+            "environmentVariables": {
+              "ASPNETCORE_ENVIRONMENT": "Development",
+              "JWT_KEY": "ThisIsASecretKeyForJwtTokenGeneration12345!"
+            }
+          },
+          "https": {
+            "commandName": "Project",
+            "dotnetRunMessages": true,
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "applicationUrl": "https://localhost:7114;http://localhost:5168",
+            "environmentVariables": {
+              "ASPNETCORE_ENVIRONMENT": "Development",
+              "JWT_KEY": "ThisIsASecretKeyForJwtTokenGeneration12345!"
+            }
+          },
+          "IIS Express": {
+            "commandName": "IISExpress",
+            "launchBrowser": true,
+            "launchUrl": "swagger",
+            "environmentVariables": {
+              "ASPNETCORE_ENVIRONMENT": "Development",
+              "JWT_KEY": "ThisIsASecretKeyForJwtTokenGeneration12345!"
+            }
+          }
+        }
+      }
+      ```
 
 ## Testing
   Unit tests are available for the application. To run the tests:
